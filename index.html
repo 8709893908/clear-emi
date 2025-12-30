@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClearEMI</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ========== LANDING SCREEN ========== -->
+<section id="landing" class="screen active">
+  <div class="center">
+    <div class="logo">📊</div>
+    <h1>ClearEMI</h1>
+    <p class="subtitle">Secure & Private</p>
+
+    <h2>All your loans and EMIs,<br/>clearly explained in one place.</h2>
+
+    <div class="features">
+      <div class="feature">📋 Track all loans</div>
+      <div class="feature">📈 Clear insights</div>
+      <div class="feature">🔒 100% private</div>
+    </div>
+
+    <div class="actions">
+      <!-- FIX: Go to add loan -->
+      <button class="primary" onclick="handleGetStarted()">Get Started →</button>
+
+      <button class="secondary">View Demo</button>
+    </div>
+
+    <p class="privacy">No signup required • reminder only • all data stays on your device</p>
+  </div>
+</section>
+
+<!-- ========== DASHBOARD ========== -->
+<section id="dashboard" class="screen">
+
+  <!-- HEADER -->
+  <div class="app-header">
+  <div class="app-title"> ClearEMI</div>
+
+  <div style="display:flex; gap:12px; align-items:center;">
+    <button class="add-loan-btn" onclick="openAddLoan()">+ Add Loan</button>
+
+    <!-- 3 DOT MENU BUTTON -->
+    <button class="menu-btn" onclick="openMenu()">⋮</button>
+    <button class="link-btn" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+<button class="link-btn" onclick="exportCSV()">⬇ Export CSV</button>
+<button class="link-btn" onclick="openCalendar()">📅 EMI Calendar</button>
+
+  </div>
+</div>
+
+  <div class="container">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="card">
+        <p>Total Outstanding</p>
+        <h3 id="totalOutstanding">₹0</h3>
+        <span class="muted">Across all loans</span>
+      </div>
+
+      <div class="card">
+        <p>Monthly EMI Burden</p>
+        <h3 id="monthlyEMI">Calculated later</h3>
+        <span class="muted">Total per month</span>
+      </div>
+    </div>
+    <!-- SMART INSIGHTS -->
+<div class="card" id="insightsCard">
+  <p>Insights</p>
+  <ul id="insightsList"></ul>
+</div>
+
+<!-- FILTER + SORT -->
+<div class="loan-header">
+  <h3>Your Loans</h3>
+  <div class="loan-controls">
+    <select id="filterType" onchange="renderDashboard()">
+      <option value="">All Types</option>
+      <option value="car">Car</option>
+      <option value="education">Education</option>
+      <option value="personal">Personal</option>
+    </select>
+
+    <select id="sortLoan" onchange="renderDashboard()">
+      <option value="">Sort</option>
+      <option value="emi">Highest EMI</option>
+      <option value="date">Nearest Due</option>
+    </select>
+  </div>
+</div>
+
+
+    <!-- NEXT EMI (FIXED CLASS) -->
+    <div class="gradient">
+      <p>Next EMI Due</p>
+      <h4 id="nextEmiText">No EMIs yet</h4>
+    </div>
+
+    <!-- LOANS -->
+    <div class="loan-header">
+      <h3>Your Loans</h3>
+    </div>
+
+    <div id="loanList" class="loan-grid"></div>
+
+  </div>
+</section>
+
+<!-- ========== ADD LOAN (MULTI STEP) ========== -->
+<section id="addLoan" class="screen">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <button class="back-btn" onclick="goToDashboard()">←</button>
+    <div>
+      <h2>Add New Loan</h2>
+      <p id="stepText">Step 1 of 3</p>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-wrapper">
+    <div class="form-card">
+
+      <!-- STEP 1 -->
+      <div id="step1" class="step active">
+        <h3>Loan Basics</h3>
+        <p class="muted">Tell us about your loan</p>
+
+        <input id="loanType" placeholder="Loan Type (Car, Home, Personal)" />
+        <input id="lender" placeholder="Lender Name" />
+        <input id="amount" type="number" placeholder="Loan Amount ₹" />
+
+        <button class="primary full" onclick="nextStep()">Continue →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" class="step">
+        <h3>Loan Terms</h3>
+
+        <input id="rate" type="number" placeholder="Interest Rate %" />
+        <input id="tenure" type="number" placeholder="Tenure (months)" />
+        <input id="startDate" type="date" />
+
+        <div class="row">
+          <button class="secondary" onclick="prevStep()">Back</button>
+          <button class="primary" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3" class="step">
+        <h3>Ready to Create</h3>
+
+        <div class="privacy-card">🔒 We never connect to your bank</div>
+        <div class="privacy-card">🛡️ Data stays private on your device</div>
+
+        <div class="summary" id="summary"></div>
+
+        <div class="row">
+          <button class="secondary" onclick="prevStep()">Back</button>
+          <!-- FIX: Create actually saves -->
+          <button class="btn btn-primary" onclick="createLoan()">Create Loan ✓</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ===== Privacy / Menu Popup ===== -->
+<div id="menuOverlay">
+  <div id="menuPopup">
+    <h3>Privacy & Data</h3>
+
+    <div class="menu-item">
+      <span class="icon green">🛡️</span>
+      <div>
+        <strong>Manual entry only — no bank access</strong>
+        <p>We never ask for your bank credentials</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <span class="icon blue">🔒</span>
+      <div>
+        <strong>No data shared with third parties</strong>
+        <p>Everything stays on your device, locally</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <span class="icon red">🗑️</span>
+      <div>
+        <strong>You can delete all data anytime</strong>
+        <button class="link-btn" onclick="deleteAllData()">
+          Delete all my data now
+        </button>
+      </div>
+    </div>
+
+    <button class="close-btn" onclick="closeMenu()">Close</button>
+  </div>
+</div>
+<div id="calendarOverlay" class="modal">
+  <div class="modal-card">
+    <h3>EMI Calendar</h3>
+    <div id="calendarList"></div>
+    <button onclick="closeCalendar()">Close</button>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

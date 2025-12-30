@@ -1,0 +1,401 @@
+* {
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #111;
+}
+
+/* ================= SCREENS ================= */
+.screen {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ================= HEADER ================= */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-title {
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-loan-btn {
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ================= MAIN CONTENT ================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  width: 100%;
+}
+
+/* Landing main center (ONLY content, not whole page) */
+.center {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ================= LANDING ================= */
+.logo {
+  font-size: 50px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.features {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.feature {
+  padding: 12px 18px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.actions {
+  margin: 24px 0;
+}
+
+/* ================= BUTTONS ================= */
+.primary {
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+  color: #fff;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondary {
+  padding: 14px 26px;
+  border-radius: 12px;
+  border: 1px solid #2563eb;
+  background: white;
+  margin-left: 12px;
+  font-weight: 600;
+}
+
+/* ================= DASHBOARD ================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.card p {
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 28px;
+}
+
+/* ================= NEXT EMI ================= */
+.gradient {
+  margin: 30px 0;
+  padding: 30px;
+  border-radius: 20px;
+  color: white;
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+}
+
+/* ================= LOANS ================= */
+.loan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.loan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 20px;
+}
+
+/* ================= ADD LOAN ================= */
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ================= FOOTER / PRIVACY ================= */
+.privacy {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= FORM CARD ================= */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ================= PROGRESS ================= */
+.progress {
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+  margin: 10px auto 30px;
+}
+
+.progress span {
+  flex: 1;
+  height: 6px;
+  border-radius: 10px;
+  background: #e5e7eb;
+}
+
+.progress span.active {
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+}
+
+/* ================= PAGE HEADER ================= */
+.page-header {
+  max-width: 520px;
+  margin: 20px auto 10px;
+  text-align: left;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+/* ================= BACK BUTTON ================= */
+.back-btn {
+  border: none;
+  background: #f3f4f6;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+/* ================= MENU POPUP ================= */
+
+#menuOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+#menuPopup {
+  background: linear-gradient(180deg, #f0fdf4, #ecfeff);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+#menuPopup h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.menu-item {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.menu-item p {
+  margin: 4px 0 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.icon.green { background: #dcfce7; }
+.icon.blue  { background: #e0f2fe; }
+.icon.red   { background: #fee2e2; }
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  color: #7c3aed;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.close-btn {
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+/* ================= 3 DOT MENU BUTTON ================= */
+
+.menu-btn {
+  background: #f3f4f6;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.menu-btn:hover {
+  background: #e5e7eb;
+}
+/* ---------- Dark Mode ---------- */
+body.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark .card,
+body.dark .form-card {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+/* ---------- Loan Progress ---------- */
+.progress-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+  border-radius: 10px;
+}
+
+/* ---------- Reminder ---------- */
+.reminder {
+  font-size: 13px;
+  color: #7c3aed;
+  margin-top: 6px;
+}
+
+/* ---------- Controls ---------- */
+.loan-controls select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+}
